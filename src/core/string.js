@@ -1,4 +1,7 @@
-﻿if( !String.prototype.trim )
-  String.prototype.trim = function () {
-    return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-  };
+﻿(function(StringProto) {
+	if (!StringProto.trim) {
+		StringProto.trim = function () {
+			return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+		};
+	}
+})(String.prototype);
