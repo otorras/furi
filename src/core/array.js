@@ -1,8 +1,6 @@
 (function (ArrayProto) {
 	if (!ArrayProto.indexOf) {
 		ArrayProto.indexOf = function (searchElement/*, fromIndex */) {
-			"use strict";
-			
 			var len = this.length;					
 			if (len === 0) {
 				return -1;
@@ -30,8 +28,6 @@
 	
 	if (!ArrayProto.lastIndexOf) {
 		ArrayProto.lastIndexOf = function (searchElement/*, fromIndex */) {
-			"use strict";
-			
 			var len = this.length;
 			
 			if (len === 0) {
@@ -57,7 +53,20 @@
 	
 	if (!ArrayProto.every) {
 		ArrayProto.every = function (callbackfn/*, thisArg */) {
-		
+			var len = this.length;
+			
+			if("function" !== typeof callbackfn) {
+				throw new TypeError(callbackfn + " is not a function");
+			}
+			
+			var thisArg = arguments[1];
+			for(var i = 0; i < len; i++) {
+				if(i in this && !callbackfn.call(thisArg, this[i], i, this)) {
+					return false;
+				}
+			}
+			
+			return true;
 		};
 	}
 })(Array.prototype);

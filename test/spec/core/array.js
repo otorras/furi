@@ -94,12 +94,32 @@
         methodPrototypeFunction(Array, 'every');
       });
 		
-			it("should check that the first parameter is a function", function () {
+			it("should verify that the first argument is a function", function () {
 				expect(function() {[].every(1);}).toThrow();
 			});
 			
-			it("", function () {
+			it("should return false if the function callback returns false for an element of the array", function () {
+				var anArray = [1,2,-3,4];
+				var callbackfn = function (val, index, obj) {
+					return val > 0;
+				};
+				expect(anArray.every(callbackfn)).toBeFalsy();
+			});
 			
+			it("should return true if the function callback returns true for all the elements of the array", function () {
+				var anArray = [1,2,3,4];
+				var callbackfn = function (val, index, obj) {
+					return val > 0;
+				};
+				expect(anArray.every(callbackfn)).toBeTruthy();
+			});
+			
+			it("should use the second argument, if supplied, as the this value for each invocation of callback function", function () {
+				var anArray = [1,2,3,4];
+				var callbackfn = function (val, index, obj) {
+					return this === obj;
+				};
+				expect(anArray.every(callbackfn, anArray)).toBeTruthy();
 			});
 		});
 
