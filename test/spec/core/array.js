@@ -127,6 +127,34 @@
       it(methodPrototypeMessage, function () {
         methodPrototypeFunction(Array, 'some');
       });
+			
+			it("should verify that the first argument is a function", function () {
+				expect(function() {[].some(1);}).toThrow();
+			});
+			
+			it("should return false if the function callback returns false for all the elements of the array", function () {
+				var anArray = [1,2,3,4];
+				var callbackfn = function (val, index, obj) {
+					return val < 0;
+				};
+				expect(anArray.some(callbackfn)).toBeFalsy();
+			});
+			
+			it("should return true if the function callback returns true for one of the elements of the array", function () {
+				var anArray = [-1,-2,-3,4];
+				var callbackfn = function (val, index, obj) {
+					return val > 0;
+				};
+				expect(anArray.some(callbackfn)).toBeTruthy();
+			});
+			
+			it("should use the second argument, if supplied, as the this value for each invocation of callback function", function () {
+				var anArray = [1,2,3,4];
+				var callbackfn = function (val, index, obj) {
+					return this === obj;
+				};
+				expect(anArray.some(callbackfn, anArray)).toBeTruthy();
+			});
     });
   
     describe('forEach', function(){

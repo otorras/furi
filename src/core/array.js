@@ -69,4 +69,23 @@
 			return true;
 		};
 	}
+	
+	if (!ArrayProto.some) {
+		ArrayProto.some = function (callbackfn/*, thisArg*/) {
+			var len = this.length;
+			
+			if("function" !== typeof callbackfn) {
+				throw new TypeError(callbackfn + " is not a function");
+			}
+			
+			var thisArg = arguments[1];
+			for(var i = 0; i < len; i++) {
+				if(i in this && callbackfn.call(thisArg, this[i], i, this)) {
+					return true;
+				}
+			}
+			
+			return false;
+		};
+	}
 })(Array.prototype);
