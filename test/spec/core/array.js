@@ -220,16 +220,16 @@
             expect(typeof Array.isArray).toEqual('function');
         });
         it('should return true when an Array object is passed as argument', function(){
-            expect(Array.isArray([])).toBeTruthy();
-            expect(Array.isArray(new Array)).toBeTruthy();
-            expect(Array.isArray(Array())).toBeTruthy();
+            expect(Array.isArray([])).toBe(true);
+            expect(Array.isArray(new Array)).toBe(true);
+            expect(Array.isArray(Array())).toBe(true);
         });
         it('should return false otherwise', function(){
-            expect(Array.isArray()).toBeFalsy();
-            expect(Array.isArray({})).toBeFalsy();
-            expect(Array.isArray('')).toBeFalsy();
-            expect(Array.isArray(0)).toBeFalsy();
-            expect(Array.isArray(function(){})).toBeFalsy();
+            expect(Array.isArray()).toBe(false);
+            expect(Array.isArray({})).toBe(false);
+            expect(Array.isArray('')).toBe(false);
+            expect(Array.isArray(0)).toBe(false);
+            expect(Array.isArray(function () {})).toBe(false);
         });
     });
 

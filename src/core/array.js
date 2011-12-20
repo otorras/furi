@@ -105,3 +105,9 @@
         };
     }
 })(Array.prototype);
+
+if(typeof Array.isArray !== 'function') {
+    Array.isArray = function (val) {
+      return Object.prototype.toString.apply(val) === '[object Array]';  
+    };
+}
