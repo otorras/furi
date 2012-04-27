@@ -1,4 +1,4 @@
-if( !Function.prototype.bind )
+if (!Function.prototype.bind)
   Function.prototype.bind = (function (slice) {
     function bind (context) {
       var that = this;
